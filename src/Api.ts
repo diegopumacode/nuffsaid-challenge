@@ -9,6 +9,7 @@ enum Priority {
 }
 
 export interface Message {
+  id:number;
   message: string;
   priority: Priority;
 }
@@ -18,7 +19,8 @@ const observable = new Observable<Message>(subscriber => {
     const message = faker.lorem.sentence();
     const priority = random(0, 2) as Priority;
     const nextInMS = random(500, 3000);
-    subscriber.next({ message, priority });
+    const id = new Date().getTime()
+    subscriber.next({ id, message, priority });
     setTimeout(generate, nextInMS);
   };
   generate();

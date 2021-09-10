@@ -6,7 +6,7 @@ interface GridProps {
     className?:string
 }
 
-const Grid: React.FC<GridProps> = ({ columns = 3, gap, className, ...props }) => {
+const Grid: React.FC<GridProps> = ({ columns = 3, gap=2, className, ...props }) => {
     return (
         <GridStyled columns={columns} gap={gap} className={className} {...props}>
             {props.children}
@@ -23,9 +23,12 @@ const GridStyled = styled.div((props: ViewProps) => `
     display:grid;
     grid-template-columns: repeat(${props.columns}, 1fr);
     grid-auto-rows: auto;
-    grid-gap: ${props.gap}rem;
+    grid-gap: ${props.gap + "rem"};
     font-size: var(--s-normal);
     min-height: 100px;
+    @media (max-width: 750px) {
+        grid-template-columns: 1fr;
+    }
 `);
 
 export default Grid
