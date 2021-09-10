@@ -46,8 +46,4 @@ const MessageStyled = styled.div`
     flex-direction:column;
     gap:10px;
     position: relative;
-    p{
-
-    }
-
 `
